@@ -195,8 +195,9 @@ namespace Yuka.Script {
 
 
 
-									value = value.Trim('\n', '%', '#', '「', '」');
-									if(value.Length > 1 && value[0] == '"' && value[value.Length - 1] == '"' && removeQuotes) {
+									//value = value.Trim('\n', '%', '#', '「', '」');
+									value = value.Trim('\n', '%', '#');
+                                    if (value.Length > 1 && value[0] == '"' && value[value.Length - 1] == '"' && removeQuotes) {
 										value = value.Substring(1, value.Length - 2);
 									}
 
