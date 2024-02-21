@@ -1,12 +1,16 @@
 ﻿using System;
+using System.Drawing;
 using System.IO;
 using System.Reflection;
 using Yuka.Tasks;
+using Yuka.Utils;
 
 namespace Yuka {
 	class Program {
 
-		static void Setup() {
+		public static SjisTunnelEncoding SjisTunnelEncoding = new SjisTunnelEncoding();
+
+        static void Setup() {
 			// Register tasks
 			Task.Register("help", new HelpTask());
 			Task.Register("split", new SplitTask());
@@ -45,7 +49,10 @@ namespace Yuka {
 		static void Main(string[] args) {
 			Setup();
 			Run(args);
-		}
+            byte[] sjisExtContent = Program.SjisTunnelEncoding.GetMappingTable();
+            if (sjisExtContent.Length > 0)
+                File.WriteAllBytes("sjis_ext.bin", sjisExtContent);
+        }
 
 		static Program() {
 			AppDomain.CurrentDomain.AssemblyResolve += new ResolveEventHandler(Resolver);

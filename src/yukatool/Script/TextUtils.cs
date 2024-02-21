@@ -188,13 +188,14 @@ namespace Yuka.Script {
 			var buffer = new byte[2];
 
 			for(int i = 0; i < str.Length; i++) {
-				try {
-					AsciiEncoding.GetBytes(str, i, 1, buffer, 0);
-					result.Append(str[i]);
-				}
-				catch {
-					result.Append($"@u({(int)str[i]:X4})");
-				}
+				//try {
+				//	AsciiEncoding.GetBytes(str, i, 1, buffer, 0);
+				//	result.Append(str[i]);
+				//}
+				//catch {
+				//	result.Append($"@u({(int)str[i]:X4})");
+				//}
+				result.Append(str[i]);
 			}
 			return result.ToString();
 		}

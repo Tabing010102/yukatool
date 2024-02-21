@@ -116,10 +116,10 @@ namespace Yuka.Script {
 
 				int defaultLineWidth = TextUtils.defaultLineWidth;
 				int defaultCharWidth = TextUtils.defaultCharWidth;
-				bool removeQuotes = true;
-				bool correctPunctuation = true;
-				bool replaceSpecialChars = true;
-				bool wrapWords = true;
+				bool removeQuotes = false;
+				bool correctPunctuation = false;
+				bool replaceSpecialChars = false;
+				bool wrapWords = false;
 
 				foreach(List<string> entry in rows) {
 					if(entry.Count < 3) continue;

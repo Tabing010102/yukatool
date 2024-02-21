@@ -4,6 +4,7 @@ using System.Text;
 using Yuka;
 using Yuka.Data;
 using Yuka.Script;
+using Yuka.Utils;
 
 namespace Yuka.Script {
 	abstract class DataElement {
@@ -142,9 +143,13 @@ namespace Yuka.Script {
 		public override void WriteData(DataManager m) {
 			byte[] temp;
 			if(stringTable.ContainsKey(id) && !id.StartsWith("@")) {
-				temp = Encoding.GetEncoding("shift-jis").GetBytes(stringTable[id].Text);
+				//// change to gbk
+				////temp = Encoding.GetEncoding("shift-jis").GetBytes(stringTable[id].Text);
+				//temp = Encoding.GetEncoding(936).GetBytes(stringTable[id].Text);
+				// sjis tunnel
+				temp = Program.SjisTunnelEncoding.GetBytes(stringTable[id].Text);
 			}
-			else {
+            else {
 				ConsoleColor color = Console.ForegroundColor;
 				Console.ForegroundColor = ConsoleColor.Red;
 				Console.Error.WriteLine(DateTime.Now.ToString() + " Missing translation for @" + id + " in " + Task.currentTask.currentFile);
